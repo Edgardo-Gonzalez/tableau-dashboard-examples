@@ -21,6 +21,7 @@
       --silver: #a8b0ba;
       --coral: #e07767;
       --ink: #0b0d11;
+      --bar-base: #555b64;
     }
     * { box-sizing: border-box; }
     body {
@@ -72,6 +73,30 @@
     .foot { display: flex; justify-content: space-between; gap: 16px; margin-top: 14px; color: var(--faint); font-size: 10.5px; }
     .tooltip { position: fixed; z-index: 5; pointer-events: none; opacity: 0; padding: 8px 10px; background: #f9fafb; color: #17202a; border-radius: 7px; box-shadow: 0 6px 22px rgba(0,0,0,.32); font-size: 11px; transition: opacity .12s; }
     .tooltip strong { display: block; margin-bottom: 3px; }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --page: #f3f5f7;
+        --surface: #ffffff;
+        --surface-2: #edf1f5;
+        --text: #142536;
+        --muted: #526273;
+        --faint: #718092;
+        --grid: #d4dce5;
+        --border: rgba(6,43,89,.18);
+        --navy: #1f5d99;
+        --navy-deep: #062b59;
+        --gold: #a8751d;
+        --gold-dark: #956315;
+        --silver: #657383;
+        --coral: #bb5a4d;
+        --ink: #ffffff;
+        --bar-base: #718092;
+      }
+      .header { border-bottom-color: var(--gold); }
+      .badge { border-color: rgba(168,117,29,.65); }
+      button { background: var(--navy-deep); color: #ffffff; }
+      .tooltip { background: #142536; color: #ffffff; }
+    }
     @media print {
       @page { size: landscape; margin: .25in; }
       body { min-width: 0; background: var(--page); print-color-adjust: exact; -webkit-print-color-adjust: exact; }
@@ -168,7 +193,9 @@
   <div class="tooltip" id="tooltip"></div>
 
   <script>
-    const C = { text:'#f7f8fa', muted:'#aeb6c2', faint:'#737d8b', grid:'#30363e', base:'#555b64', navy:'#8dbce7', gold:'#d7a64e', coral:'#e07767', surface:'#181b20' };
+    const css = getComputedStyle(document.documentElement);
+    const color = name => css.getPropertyValue(name).trim();
+    const C = { text:color('--text'), muted:color('--muted'), faint:color('--faint'), grid:color('--grid'), base:color('--bar-base'), navy:color('--navy'), gold:color('--gold'), coral:color('--coral'), surface:color('--surface') };
     const tooltip = document.getElementById('tooltip');
     const W = 620, H = 238, P = {l:42, r:16, t:16, b:34};
     const x = i => P.l + i * ((W-P.l-P.r) / 11);
