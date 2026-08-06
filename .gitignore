@@ -1,0 +1,25 @@
+# Generated data — reproducible from the seeded generators, so it is not
+# committed. Run each project's build script to recreate it byte-identically.
+data/
+*.db
+*.csv
+
+# Tableau
+*.twbr
+*.hyper
+*.tde
+Book*.twb
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
