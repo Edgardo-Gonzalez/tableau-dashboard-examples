@@ -10,7 +10,7 @@ Store Gonzalez Capital Mortgage logo files here for use in Tableau reports and d
 | `logo-monogram-gcm.png` | GCM mark for small-format placements |
 | `app-icon-gcm.png` | Application or browser icon |
 | `watermark.png` | Subtle background watermark |
-| `letterhead-miami.png` | Letterhead template with Miami contact details |
-| `letterhead-san-diego.png` | Letterhead template with San Diego contact details |
+| `letterhead-breaking-bad-white-residence.png` | Letterhead template with the fictional White-residence address from *Breaking Bad* |
+| `letterhead-sopranos-residence.png` | Letterhead template with the fictional Soprano-residence address from *The Sopranos* |
 
 For future additions, prefer transparent-background PNG or SVG assets where possible.
