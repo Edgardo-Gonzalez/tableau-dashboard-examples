@@ -7,8 +7,8 @@ requiring a database driver.
 ## Workbook standards
 
 - **Font:** Aptos or Tableau Book.
-- **Core palette:** navy `#062B5B`, gold `#B8892D`, charcoal `#3D3D3D`, white
-  `#FFFFFF`, and light canvas `#F6F7F9`.
+- **Core palette:** Institutional Navy `#062B59`, Capital Gold `#B8892E`,
+  Graphite `#3E3E3E`, Silver Gray `#8A9098`, and white `#FFFFFF`.
 - **Brand assets:** place `assets/logos/logo-horizontal-lockup.png` in each
   dashboard header. Use `app-icon-gcm.png` for small navigation marks and
   `watermark.png` at 6–10% opacity behind spacious dashboard canvases.
