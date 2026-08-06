@@ -184,8 +184,8 @@ generator/
   msr.py          prepay S-curve, credit migration, valuation, rate shocks
   messiness.py    deliberate data-quality artifacts
   build.py        orchestrator — writes CSVs and SQLite
-data/             12 CSVs (generated)
-meridian.db       SQLite with indexes and analytical views (generated)
-validate.py       41 assertions tying the data back to the story
-docs/design.md    design document
+data/             12 CSVs
+meridian.db       SQLite with indexes and analytical views
+validate.py       29 assertions tying the data back to the story
+docs/superpowers/specs/   design document
 ```
