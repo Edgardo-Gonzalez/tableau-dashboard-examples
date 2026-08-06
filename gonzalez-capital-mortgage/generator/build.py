@@ -24,7 +24,7 @@ import messiness as MESS
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(ROOT, "data")
-DB_PATH = os.path.join(ROOT, "meridian.db")
+DB_PATH = os.path.join(ROOT, "gonzalez_capital_mortgage.db")
 
 
 # Internal working columns (leading underscore) are dropped before export --
@@ -288,7 +288,7 @@ def write_sqlite(tables: dict):
 
 def main():
     t0 = time.time()
-    print("Meridian Home Lending - synthetic data generation")
+    print("Gonzalez Capital Mortgage - synthetic data generation")
     print("=" * 62)
 
     print("\n[1/6] Dimensions...")

@@ -1,4 +1,4 @@
-# Meridian Home Lending — Tableau Portfolio Dashboard
+# Gonzalez Capital Mortgage — Tableau Portfolio Dashboard
 
 **Date:** 2026-08-06
 **Status:** Approved — data generation phase
@@ -13,7 +13,7 @@ All data is fabricated. No real borrower, employee, or company data is involved.
 
 ## Scenario
 
-Meridian Home Lending is a fictional mid-size lender: ~$4B annual origination,
+Gonzalez Capital Mortgage is a fictional mid-size lender: ~$4B annual origination,
 12 states, 3 regions, three channels (Retail, Wholesale, Correspondent).
 
 **The setup.** Rates drop ~110bps in Q3 of Year 1. Application volume nearly doubles
@@ -171,7 +171,7 @@ actions for cohort comparison; custom SQL views in the SQLite connection.
 
 1. `generate_data.py` — seeded simulation
 2. Nine CSVs in `/data`
-3. `meridian.db` — SQLite with tables, indexes, analytical views
+3. `gonzalez_capital_mortgage.db` — SQLite with tables, indexes, analytical views
 4. `BUILD_GUIDE.md` — sheet-by-sheet: calculated fields in full Tableau syntax,
    mark types, color specs, layout, annotation copy
 5. `README.md` — scenario framing and talking points

@@ -1,4 +1,4 @@
-# Meridian Home Lending — Mortgage Operations & Servicing Analytics
+# Gonzalez Capital Mortgage — Mortgage Operations & Servicing Analytics
 
 Synthetic dataset for a Tableau portfolio dashboard. Twelve tables covering
 loan origination, post-closing operations, and MSR/servicing valuation for a
@@ -11,7 +11,7 @@ is used. Everything is produced by a seeded simulation in `generator/`.
 
 ## The Story
 
-Meridian Home Lending: ~$4B annual origination, 12 states, 3 regions, three
+Gonzalez Capital Mortgage: ~$4B annual origination, 12 states, 3 regions, three
 channels (Retail, Wholesale, Correspondent).
 
 **The setup.** Rates drop ~110bps in Q3 2024. Application volume nearly triples
@@ -71,7 +71,7 @@ python validate.py
 ```
 
 Connect Tableau to either:
-- **`meridian.db`** (SQLite) — recommended; includes 7 pre-built analytical views
+- **`gonzalez_capital_mortgage.db`** (SQLite) — recommended; includes 7 pre-built analytical views
 - **`data/*.csv`** — 12 files, if you prefer a file-based connection
 
 ---
@@ -185,7 +185,7 @@ generator/
   messiness.py    deliberate data-quality artifacts
   build.py        orchestrator — writes CSVs and SQLite
 data/             12 CSVs
-meridian.db       SQLite with indexes and analytical views
+gonzalez_capital_mortgage.db  SQLite with indexes and analytical views
 validate.py       29 assertions tying the data back to the story
 docs/superpowers/specs/   design document
 ```

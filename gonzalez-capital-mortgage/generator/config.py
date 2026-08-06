@@ -1,4 +1,4 @@
-"""Simulation constants for Meridian Home Lending.
+"""Simulation constants for Gonzalez Capital Mortgage.
 
 All data produced by this package is synthetic. Values are chosen to be
 plausible for a mid-size US mortgage lender, not to match any real institution.

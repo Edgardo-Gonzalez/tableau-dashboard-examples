@@ -14,7 +14,7 @@ institutional data is used anywhere.
 
 ## Projects
 
-### [meridian-lending-ops/](meridian-lending-ops/) — Mortgage Operations & Servicing
+### [gonzalez-capital-mortgage/](gonzalez-capital-mortgage/) — Mortgage Operations & Servicing
 
 A mid-size mortgage lender absorbs a rate-driven volume surge. Leadership
 assumes underwriting is the bottleneck and prepares to hire underwriters. The
@@ -49,12 +49,12 @@ Generated data is **not committed** — it is fully reproducible from seeded
 scripts, so committing it would bloat the repository for no benefit.
 
 ```bash
-cd meridian-lending-ops
+cd gonzalez-capital-mortgage
 python generator/build.py    # regenerate all data (~19s, deterministic)
 python validate.py           # 41 assertions tying data back to the story
 ```
 
-Then connect Tableau to the generated `meridian.db` (SQLite, includes
+Then connect Tableau to the generated `gonzalez_capital_mortgage.db` (SQLite, includes
 pre-built analytical views) or to the CSVs in `data/`.
 
 **Requirements:** Python 3.10+, pandas, numpy.

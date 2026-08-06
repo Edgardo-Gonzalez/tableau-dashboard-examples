@@ -13,7 +13,7 @@ import sys
 
 import pandas as pd
 
-DB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "meridian.db")
+DB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gonzalez_capital_mortgage.db")
 
 results = []
 
@@ -32,13 +32,13 @@ def q(con, sql):
 
 def main():
     if not os.path.exists(DB):
-        print("meridian.db not found -- run: python generator/build.py")
+        print("gonzalez_capital_mortgage.db not found -- run: python generator/build.py")
         return 1
 
     con = sqlite3.connect(DB)
 
     print("\n" + "=" * 70)
-    print("MERIDIAN DATA VALIDATION")
+    print("GONZALEZ CAPITAL MORTGAGE DATA VALIDATION")
     print("=" * 70)
 
     # ---------------------------------------------------- structural checks
