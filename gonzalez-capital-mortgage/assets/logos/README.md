@@ -2,10 +2,15 @@
 
 Store Gonzalez Capital Mortgage logo files here for use in Tableau reports and dashboards.
 
-Recommended formats:
+| File | Intended use |
+| --- | --- |
+| `logo-primary-stacked.png` | Portrait logo for title pages and documents |
+| `logo-primary-landscape.png` | Full logo for wide dashboard headers |
+| `logo-horizontal-lockup.png` | Compact horizontal logo for report headers |
+| `logo-monogram-gcm.png` | GCM mark for small-format placements |
+| `app-icon-gcm.png` | Application or browser icon |
+| `watermark.png` | Subtle background watermark |
+| `letterhead-miami.png` | Letterhead template with Miami contact details |
+| `letterhead-san-diego.png` | Letterhead template with San Diego contact details |
 
-- `gonzalez-capital-mortgage-logo.svg` for scalable dashboard headers
-- `gonzalez-capital-mortgage-logo.png` for applications that require raster images
-- `gonzalez-capital-mortgage-mark.png` for compact placements such as navigation or tooltips
-
-Keep a transparent-background version of each raster asset when possible.
+For future additions, prefer transparent-background PNG or SVG assets where possible.
