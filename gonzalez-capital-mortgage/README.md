@@ -8,6 +8,8 @@ fictional mid-size mortgage lender across 24 months.
 is used. Everything is produced by a seeded simulation in `generator/`.
 
 The completed workbook is available at **`tableau/GCP_Sample_Dash.twb`**.
+The standalone synthetic lender profile is available at
+**`lender-profile/index.html`**.
 
 ---
 

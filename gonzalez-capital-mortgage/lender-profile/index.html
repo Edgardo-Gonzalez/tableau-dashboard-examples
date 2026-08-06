@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gonzalez Capital Mortgage — Lender Profile</title>
+  <style>
+    :root {
+      --page: #0d0f12;
+      --surface: #181b20;
+      --surface-2: #20242a;
+      --text: #f7f8fa;
+      --muted: #aeb6c2;
+      --faint: #737d8b;
+      --grid: #30363e;
+      --border: rgba(255,255,255,.11);
+      --navy: #8dbce7;
+      --navy-deep: #062b59;
+      --gold: #d7a64e;
+      --gold-dark: #b8892e;
+      --silver: #a8b0ba;
+      --coral: #e07767;
+      --ink: #0b0d11;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-width: 1080px;
+      background: var(--page);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    .page {
+      max-width: 1520px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 22px 28px 24px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 60px;
+      padding: 0 0 16px;
+      border-bottom: 3px solid var(--gold);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand svg { width: 42px; height: 38px; }
+    .brand-name { font-size: 21px; font-weight: 760; letter-spacing: .035em; }
+    .brand-subtitle { margin-top: 2px; font-size: 11px; color: var(--muted); letter-spacing: .14em; text-transform: uppercase; }
+    .header-meta { display: flex; align-items: center; gap: 17px; color: var(--muted); font-size: 12px; }
+    .badge { border: 1px solid rgba(215,166,78,.55); color: var(--gold); border-radius: 999px; padding: 6px 10px; font-size: 11px; font-weight: 700; letter-spacing: .03em; }
+    button { border: 0; border-radius: 8px; padding: 9px 13px; background: var(--gold); color: var(--ink); font: inherit; font-size: 12px; font-weight: 750; cursor: pointer; }
+    .lede { display: flex; align-items: baseline; justify-content: space-between; margin: 15px 0 14px; }
+    .lede h1 { margin: 0; font-size: 18px; letter-spacing: -.01em; }
+    .lede p { margin: 0; color: var(--muted); font-size: 12px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .card { min-width: 0; min-height: 392px; background: var(--surface); border: 1px solid var(--border); border-radius: 13px; padding: 18px 20px 15px; overflow: hidden; }
+    .card h2 { margin: 0; font-size: 15px; font-weight: 720; }
+    .subtitle { margin: 4px 0 14px; color: var(--muted); font-size: 11.5px; }
+    .legend { display: flex; gap: 15px; flex-wrap: wrap; min-height: 18px; margin-bottom: 4px; color: var(--muted); font-size: 11px; }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .swatch { display: inline-block; width: 13px; height: 8px; border-radius: 2px; }
+    .line-swatch { height: 3px; border-radius: 2px; }
+    .chart { height: 238px; position: relative; }
+    .chart svg { width: 100%; height: 100%; overflow: visible; }
+    .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 4px 0 12px; }
+    .stat { padding: 9px 10px; border-radius: 8px; background: var(--surface-2); border: 1px solid rgba(255,255,255,.06); }
+    .stat-label { color: var(--muted); font-size: 9.5px; letter-spacing: .04em; text-transform: uppercase; }
+    .stat-value { margin-top: 2px; font-size: 17px; font-weight: 750; }
+    .note { margin: 8px 0 0; color: var(--faint); font-size: 10.5px; line-height: 1.45; }
+    .foot { display: flex; justify-content: space-between; gap: 16px; margin-top: 14px; color: var(--faint); font-size: 10.5px; }
+    .tooltip { position: fixed; z-index: 5; pointer-events: none; opacity: 0; padding: 8px 10px; background: #f9fafb; color: #17202a; border-radius: 7px; box-shadow: 0 6px 22px rgba(0,0,0,.32); font-size: 11px; transition: opacity .12s; }
+    .tooltip strong { display: block; margin-bottom: 3px; }
+    @media print {
+      body { min-width: 0; background: var(--page); }
+      .page { max-width: none; padding: 16px 20px; }
+      button { display: none; }
+      .card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div class="brand">
+        <svg viewBox="0 0 56 50" aria-hidden="true">
+          <path d="M3 43 C18 32 38 32 53 43" fill="none" stroke="#d7a64e" stroke-width="4"/>
+          <path d="M12 35V19l10-7v22M25 34V7l10-7v34M38 35V19l8 6v10" fill="#8dbce7"/>
+        </svg>
+        <div><div class="brand-name">GONZALEZ</div><div class="brand-subtitle">Capital Mortgage</div></div>
+      </div>
+      <div class="header-meta"><span class="badge">SYNTHETIC PROFILE</span><span>NMLS #9999999</span><button onclick="window.print()">Print Report</button></div>
+    </header>
+
+    <section class="lede">
+      <h1>Lender Profile — Capital Markets &amp; Servicing</h1>
+      <p>Illustrative figures only · refreshed August 6, 2026</p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Closed Volume, VA Highlighted</h2>
+        <p class="subtitle">Quarterly closed volume with VA contribution called out · 2023-Q2–2026-Q1</p>
+        <div class="legend"><span><i class="swatch" style="background:#555b64"></i>Total closed volume</span><span><i class="swatch" style="background:#d7a64e"></i>VA closed volume</span></div>
+        <div class="chart" id="volumeChart"></div>
+        <p class="note">VA volume is a component of total closed volume. All values and market positions are fabricated for demonstration.</p>
+      </article>
+
+      <article class="card">
+        <h2>30-Year Rate: GCP vs. Industry</h2>
+        <p class="subtitle">Monthly funded-rate comparison · GCP pricing remains modestly inside the industry average</p>
+        <div class="legend"><span><i class="swatch line-swatch" style="background:#8dbce7"></i>GCP average note rate</span><span><i class="swatch line-swatch" style="background:#d7a64e"></i>Industry average</span></div>
+        <div class="chart" id="rateChart"></div>
+        <p class="note">Rates are synthetic 30-year fixed averages for comparison only; they are not rate quotes or offers.</p>
+      </article>
+
+      <article class="card">
+        <h2>MSR Buying &amp; Selling Activity</h2>
+        <p class="subtitle">Monthly servicing-rights activity related to the GCP retained portfolio · $ millions</p>
+        <div class="stat-strip">
+          <div class="stat"><div class="stat-label">YTD acquired</div><div class="stat-value" style="color:var(--navy)">$428M</div></div>
+          <div class="stat"><div class="stat-label">YTD sold</div><div class="stat-value" style="color:var(--coral)">$276M</div></div>
+          <div class="stat"><div class="stat-label">Net retained</div><div class="stat-value" style="color:var(--gold)">$152M</div></div>
+        </div>
+        <div class="legend"><span><i class="swatch" style="background:#8dbce7"></i>Acquired UPB</span><span><i class="swatch" style="background:#e07767"></i>Sold UPB</span></div>
+        <div class="chart" id="msrChart"></div>
+        <p class="note">MSR activity is fully fabricated and presented as unpaid principal balance, not fair-value consideration.</p>
+      </article>
+
+      <article class="card">
+        <h2>Servicing Portfolio</h2>
+        <p class="subtitle">Retained servicing UPB, with VA portfolio contribution highlighted · quarterly</p>
+        <div class="stat-strip">
+          <div class="stat"><div class="stat-label">Servicing UPB</div><div class="stat-value">$13.8B</div></div>
+          <div class="stat"><div class="stat-label">VA share</div><div class="stat-value" style="color:var(--gold)">27.4%</div></div>
+          <div class="stat"><div class="stat-label">Annualized CPR</div><div class="stat-value">8.4%</div></div>
+        </div>
+        <div class="legend"><span><i class="swatch line-swatch" style="background:#8dbce7"></i>Total retained UPB</span><span><i class="swatch line-swatch" style="background:#d7a64e"></i>VA servicing UPB</span></div>
+        <div class="chart" id="servicingChart"></div>
+        <p class="note">Portfolio statistics are synthetic and are not intended to represent any actual lender’s balance sheet or servicing book.</p>
+      </article>
+    </section>
+
+    <footer class="foot"><span>CONFIDENTIAL — FOR INTERNAL USE ONLY · Gonzalez Capital Mortgage · Synthetic portfolio profile</span><span>All data is simulated for reporting and demonstration.</span></footer>
+  </main>
+  <div class="tooltip" id="tooltip"></div>
+
+  <script>
+    const C = { text:'#f7f8fa', muted:'#aeb6c2', faint:'#737d8b', grid:'#30363e', base:'#555b64', navy:'#8dbce7', gold:'#d7a64e', coral:'#e07767', surface:'#181b20' };
+    const tooltip = document.getElementById('tooltip');
+    const W = 620, H = 238, P = {l:42, r:16, t:16, b:34};
+    const x = i => P.l + i * ((W-P.l-P.r) / 11);
+    const chartArea = { w: W-P.l-P.r, h: H-P.t-P.b };
+    const fmtB = v => `$${v.toFixed(1)}B`;
+    const fmtM = v => `$${v}M`;
+    const svg = content => `<svg viewBox="0 0 ${W} ${H}" role="img">${content}</svg>`;
+    const line = (x1,y1,x2,y2,color,width=1,dash='') => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="${width}" ${dash ? `stroke-dasharray="${dash}"` : ''}/>`;
+    const txt = (x,y,value,anchor='start',color=C.muted,size=10,weight=400) => `<text x="${x}" y="${y}" text-anchor="${anchor}" fill="${color}" font-size="${size}" font-weight="${weight}" font-family="system-ui, sans-serif">${value}</text>`;
+    function grids(max, ticks, yFormat) {
+      let out='';
+      for (let i=0;i<=ticks;i++) { const v=max*i/ticks, y=P.t+chartArea.h-(v/max)*chartArea.h; out += line(P.l,y,W-P.r,y,C.grid) + txt(P.l-7,y+3,yFormat(v),'end'); }
+      return out;
+    }
+    function hover(node, label, rows) {
+      node.addEventListener('mousemove', e => { tooltip.innerHTML=`<strong>${label}</strong>${rows.map(r=>`<div>${r}</div>`).join('')}`; tooltip.style.left=(e.clientX+14)+'px'; tooltip.style.top=(e.clientY+14)+'px'; tooltip.style.opacity=1; });
+      node.addEventListener('mouseleave', () => tooltip.style.opacity=0);
+    }
+    function mount(id, markup, interactive=[]) { const el=document.getElementById(id); el.innerHTML=svg(markup); interactive.forEach(({selector,label,rows})=>el.querySelectorAll(selector).forEach(n=>hover(n,label(n),rows(n)))); }
+
+    const quarters=['23 Q2','23 Q3','23 Q4','24 Q1','24 Q2','24 Q3','24 Q4','25 Q1','25 Q2','25 Q3','25 Q4','26 Q1'];
+    const volume=[1.12,1.03,1.20,1.34,1.46,1.38,1.24,1.31,1.49,1.57,1.70,1.62];
+    const va=[.21,.20,.23,.27,.30,.29,.26,.28,.33,.36,.39,.37];
+    let vMarkup=grids(1.8,3,fmtB);
+    volume.forEach((d,i)=>{ const bw=27, xx=x(i)-bw/2, yy=P.t+chartArea.h-(d/1.8)*chartArea.h, vh=(d/1.8)*chartArea.h, vhh=(va[i]/1.8)*chartArea.h; vMarkup+=`<rect class="volume-bar" data-i="${i}" x="${xx}" y="${yy}" width="${bw}" height="${vh}" rx="3" fill="${C.base}"/><rect class="volume-va" data-i="${i}" x="${xx}" y="${P.t+chartArea.h-vhh}" width="${bw}" height="${vhh}" rx="3" fill="${C.gold}"/>${txt(x(i),H-12,quarters[i],'middle',C.faint,9)}${txt(x(i),P.t+chartArea.h-vhh-5,`${Math.round(va[i]/d*100)}%`,'middle',C.gold,9,700)}`; });
+    mount('volumeChart',vMarkup,[{selector:'.volume-bar,.volume-va',label:n=>quarters[n.dataset.i],rows:n=>[`Total closed volume: ${fmtB(volume[n.dataset.i])}`,`VA closed volume: ${fmtB(va[n.dataset.i])}`,`VA share: ${(va[n.dataset.i]/volume[n.dataset.i]*100).toFixed(1)}%`]}]);
+
+    const months=['Apr 25','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan 26','Feb','Mar'];
+    const industry=[6.76,6.81,6.74,6.69,6.65,6.58,6.63,6.70,6.61,6.55,6.49,6.44];
+    const gcp=[6.68,6.72,6.66,6.60,6.56,6.49,6.55,6.62,6.53,6.47,6.41,6.36];
+    const sx=i=>x(i), sy=v=>P.t+chartArea.h-((v-6.2)/.7)*chartArea.h;
+    let rMarkup=grids(.7,4,v=>`${(v+6.2).toFixed(1)}%`);
+    const points=a=>a.map((d,i)=>`${sx(i)},${sy(d)}`).join(' ');
+    rMarkup+=`<polyline points="${points(industry)}" fill="none" stroke="${C.gold}" stroke-width="2.5"/><polyline points="${points(gcp)}" fill="none" stroke="${C.navy}" stroke-width="2.5"/>`;
+    months.forEach((d,i)=>{rMarkup+=`${txt(sx(i),H-12,d,'middle',C.faint,9)}<circle class="rate-dot" data-i="${i}" cx="${sx(i)}" cy="${sy(gcp[i])}" r="5" fill="transparent"/>`;});
+    rMarkup+=txt(sx(11)+8,sy(gcp[11])+4,`${gcp[11].toFixed(2)}%`,'start',C.navy,11,750)+txt(sx(11)+8,sy(industry[11])+4,`${industry[11].toFixed(2)}%`,'start',C.gold,11,750);
+    mount('rateChart',rMarkup,[{selector:'.rate-dot',label:n=>months[n.dataset.i],rows:n=>[`GCP: ${gcp[n.dataset.i].toFixed(2)}%`,`Industry: ${industry[n.dataset.i].toFixed(2)}%`,`GCP advantage: ${(industry[n.dataset.i]-gcp[n.dataset.i]).toFixed(2)} pts`]}]);
+
+    const msrMonths=['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar'];
+    const buys=[38,25,47,33,42,52,36,31,49,40,35,44], sells=[18,22,14,26,20,17,29,24,18,31,28,29];
+    const bx=i=>P.l+i*(chartArea.w/12)+8, by=v=>P.t+chartArea.h-(v/60)*chartArea.h;
+    let mMarkup=grids(60,3,v=>`$${v}M`);
+    msrMonths.forEach((d,i)=>{const w=16, xx=bx(i);mMarkup+=`<rect class="msr-buy" data-i="${i}" x="${xx}" y="${by(buys[i])}" width="${w}" height="${P.t+chartArea.h-by(buys[i])}" rx="2" fill="${C.navy}"/><rect class="msr-sell" data-i="${i}" x="${xx+w+3}" y="${by(sells[i])}" width="${w}" height="${P.t+chartArea.h-by(sells[i])}" rx="2" fill="${C.coral}"/>${txt(xx+w+2,H-12,d,'middle',C.faint,9)}`;});
+    mount('msrChart',mMarkup,[{selector:'.msr-buy,.msr-sell',label:n=>msrMonths[n.dataset.i],rows:n=>[`Acquired UPB: ${fmtM(buys[n.dataset.i])}`,`Sold UPB: ${fmtM(sells[n.dataset.i])}`,`Net: ${fmtM(buys[n.dataset.i]-sells[n.dataset.i])}`]}]);
+
+    const servicing=[10.2,10.5,10.9,11.1,11.4,11.8,12.0,12.4,12.8,13.1,13.5,13.8], vaServ=[2.4,2.5,2.6,2.7,2.9,3.0,3.2,3.3,3.5,3.6,3.7,3.8];
+    const sy2=v=>P.t+chartArea.h-((v-2)/12)*chartArea.h;
+    let sMarkup=grids(12,3,v=>`$${(v+2).toFixed(0)}B`);
+    const servicePoints=a=>a.map((d,i)=>`${sx(i)},${sy2(d)}`).join(' ');
+    const area=`${servicePoints(servicing)} ${sx(11)},${P.t+chartArea.h} ${sx(0)},${P.t+chartArea.h}`;
+    sMarkup+=`<polygon points="${area}" fill="#8dbce7" opacity=".14"/><polyline points="${servicePoints(servicing)}" fill="none" stroke="${C.navy}" stroke-width="3"/><polyline points="${servicePoints(vaServ)}" fill="none" stroke="${C.gold}" stroke-width="2.5"/>`;
+    quarters.forEach((d,i)=>{sMarkup+=`${txt(sx(i),H-12,d,'middle',C.faint,9)}<circle class="service-dot" data-i="${i}" cx="${sx(i)}" cy="${sy2(servicing[i])}" r="5" fill="transparent"/>`;});
+    sMarkup+=txt(sx(11)-3,sy2(servicing[11])-9,fmtB(servicing[11]),'end',C.navy,11,750)+txt(sx(11)-3,sy2(vaServ[11])+16,fmtB(vaServ[11]),'end',C.gold,11,750);
+    mount('servicingChart',sMarkup,[{selector:'.service-dot',label:n=>quarters[n.dataset.i],rows:n=>[`Retained UPB: ${fmtB(servicing[n.dataset.i])}`,`VA servicing UPB: ${fmtB(vaServ[n.dataset.i])}`,`VA share: ${(vaServ[n.dataset.i]/servicing[n.dataset.i]*100).toFixed(1)}%`]}]);
+  </script>
+</body>
+</html>
