@@ -1,0 +1,9 @@
+Hi [Name],
+
+I wanted to share two portfolio samples: a Tableau dashboard and a lender profile. Both use entirely synthetic data, but they reflect the types of reporting and analysis materials I’ve built in mortgage and capital-markets environments.
+
+For the data, I used AI to help create Python scripts that generated realistic randomized records and scenarios. The Tableau piece highlights my strongest skill set: building clear, decision-oriented dashboards from raw data.
+
+The lender profile is a self-contained HTML report with the synthetic data embedded directly in the file. It is modeled after an approach my team began using for server-hosted HTML dashboards and recurring digests.
+
+Happy to walk through either example or discuss the thinking behind the reporting design.
