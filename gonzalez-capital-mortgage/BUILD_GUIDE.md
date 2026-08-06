@@ -1,45 +1,42 @@
 # Tableau Build Guide — Gonzalez Capital Mortgage
 
-This guide builds the portfolio dashboard from
-`gonzalez_capital_mortgage.db`. Connect Tableau to the SQLite file in the
-project root; it already contains indexed tables and seven analytical views.
+Build this Tableau portfolio workbook exclusively from the CSVs in `data/`.
+Using Tableau’s **Text file** connector keeps the workbook portable and avoids
+requiring a database driver.
 
 ## Workbook standards
 
 - **Font:** Aptos or Tableau Book.
 - **Core palette:** navy `#062B5B`, gold `#B8892D`, charcoal `#3D3D3D`, white
   `#FFFFFF`, and light canvas `#F6F7F9`.
-- **Status colors:** Post-Shock navy; Pre-Shock gold; Rural gold; Metro blue-gray
-  `#7E97AE`; adverse / fallout `#B84A4A`.
-- **Brand assets:** use `assets/logos/logo-horizontal-lockup.png` in dashboard
-  headers, `app-icon-gcm.png` as a compact navigation mark, and `watermark.png`
-  at 6–10% opacity behind spacious dashboard canvases.
-- **Data-quality rule:** exclude `[Has Timestamp Anomaly] = 1` from duration
-  charts. Keep it available as a visible data-quality callout rather than
-  silently changing the data.
+- **Brand assets:** place `assets/logos/logo-horizontal-lockup.png` in each
+  dashboard header. Use `app-icon-gcm.png` for small navigation marks and
+  `watermark.png` at 6–10% opacity behind spacious dashboard canvases.
+- **Data quality:** exclude `[Has Timestamp Anomaly] = 1` from duration charts;
+  retain it as a visible data-quality callout.
 
 ## Dashboard 1 — Where Did the Time Go?
 
 **Audience:** executive operations leadership.
 
-**Message:** the rate-driven surge exposed an appraisal-capacity and condition-
-rework problem, not an underwriting staffing problem.
+**Message:** the rate-driven surge exposed an appraisal-capacity and
+condition-rework problem, not an underwriting staffing problem.
 
 **Canvas:** fixed 1,440 × 900 px. Use a white canvas, a 72 px navy header, and
-16 px gutters. Place `logo-horizontal-lockup.png` at the header’s left edge.
+16 px gutters.
 
-### Data sources
+### Data model
 
-Add these SQLite objects independently:
+Add `data/fact_loan.csv` as the primary source. It powers the KPI strip, stage
+analysis, map, and fallout trend without joins.
 
-1. `fact_loan` for KPI cards and duration detail.
-2. `vw_appraisal_delay_by_county` for the map.
-3. `vw_condition_rework` for condition analysis.
-4. `vw_funnel_by_month` for fallout dollars.
+For the condition worksheet, add `data/fact_condition.csv` and relate it to
+`fact_loan.csv` on `loan_id`, with conditions on the many side. No physical join
+is needed.
 
-### Workbook fields
+### Calculated fields
 
-Create the following calculated fields against `fact_loan`.
+Create these fields against `fact_loan.csv`.
 
 ```tableau
 // Completed Loan
@@ -57,136 +54,118 @@ IF [Status] = "Fallout" THEN [Loan Amount] END
 ```
 
 ```tableau
-// Rural Delay Flag
-IF [Market Tier] = "Rural" THEN "Rural" ELSE "Metro" END
+// Application Month
+DATETRUNC('month', [Application Date])
 ```
 
 Create a string parameter named **Period Focus**, with values `All`,
-`Pre-Shock`, and `Post-Shock`, then this filter:
+`Pre-Shock`, and `Post-Shock`, then apply this filter to all loan-based sheets.
 
 ```tableau
 // Period Focus Filter
 [Period Focus] = "All" OR [Shock Period] = [Period Focus]
 ```
 
-Apply the filter to every worksheet that uses `fact_loan`.
-
 ### Sheet 1 — Executive KPI strip
 
-Create four text sheets using `fact_loan`, each filtered to `[Period Focus
-Filter]` and, where applicable, `[Valid Duration Loan]`.
+Create four text worksheets, filtered by `[Period Focus Filter]` and—except
+for fallout—`[Valid Duration Loan]`.
 
-| KPI | Mark | Field | Format |
-| --- | --- | --- | --- |
-| Median cycle time | Text | `MEDIAN([Days Total Cycle])` | `0.0 "days"` |
-| Appraisal wait | Text | `MEDIAN([Days Appraisal Wait])` | `0.0 "days"` |
-| Fallout dollars | Text | `SUM([Fallout Dollars])` | `$#,##0,,"M"` |
-| Rural share of delay | Text | `SUM(IF [Market Tier] = "Rural" THEN [Days Appraisal Wait] END) / SUM([Days Appraisal Wait])` | `0%` |
+| KPI | Field | Format |
+| --- | --- | --- |
+| Median cycle time | `MEDIAN([Days Total Cycle])` | `0.0 "days"` |
+| Appraisal wait | `MEDIAN([Days Appraisal Wait])` | `0.0 "days"` |
+| Fallout dollars | `SUM([Fallout Dollars])` | `$#,##0,,"M"` |
+| Rural delay share | `SUM(IF [Market Tier] = "Rural" THEN [Days Appraisal Wait] END) / SUM([Days Appraisal Wait])` | `0%` |
 
-Use an 11 pt uppercase label above each 28 pt value. Add a subtitle under the
-strip: **“Rates fell, applications surged, and the bottleneck moved outside
+Use an 11 pt uppercase label above each 28 pt value. Subtitle:
+**“Rates fell, applications surged, and the bottleneck moved outside
 underwriting.”**
 
 ### Sheet 2 — Stage decomposition
 
-Use this Custom SQL as a new Tableau data source. It turns stage columns into a
-single `[Stage]` dimension and `[Days]` measure.
+Use `fact_loan.csv`; no custom SQL or pivot is required. Put **Measure Names**
+on Rows, **Measure Values** on Columns, and `[Shock Period]` on Color. Retain
+only these measures in Measure Values:
 
-```sql
-SELECT shock_period, market_tier, property_state, channel, region, loan_id,
-       'Document collection' AS stage, days_app_to_docs AS days
-FROM fact_loan
-UNION ALL SELECT shock_period, market_tier, property_state, channel, region, loan_id,
-       'Processing', days_processing FROM fact_loan
-UNION ALL SELECT shock_period, market_tier, property_state, channel, region, loan_id,
-       'Appraisal wait', days_appraisal_wait FROM fact_loan
-UNION ALL SELECT shock_period, market_tier, property_state, channel, region, loan_id,
-       'UW queue', days_uw_queue_wait FROM fact_loan
-UNION ALL SELECT shock_period, market_tier, property_state, channel, region, loan_id,
-       'UW touch', days_uw_touch FROM fact_loan
-UNION ALL SELECT shock_period, market_tier, property_state, channel, region, loan_id,
-       'Condition clearing', days_condition_clearing FROM fact_loan
-UNION ALL SELECT shock_period, market_tier, property_state, channel, region, loan_id,
-       'CTC to funding', days_ctc_to_funding FROM fact_loan;
-```
+1. `AVG([Days App to Docs])`
+2. `AVG([Days Processing])`
+3. `AVG([Days Appraisal Wait])`
+4. `AVG([Days UW Queue Wait])`
+5. `AVG([Days UW Touch])`
+6. `AVG([Days Condition Clearing])`
+7. `AVG([Days CTC to Funding])`
 
-Filter `days >= 0`, keep only `Pre-Shock` and `Post-Shock`, and use side-by-side
-bars: `[Stage]` on Rows, `AVG([Days])` on Columns, and `[Shock Period]` on
-Color. Sort stages in the SQL order. Add a gold annotation on **Appraisal wait**:
-“External capacity, not underwriting, absorbed the surge.”
+Filter to completed, valid-duration loans and Pre-/Post-Shock. Alias the
+Measure Names to concise stage labels, preserve the order above, and use
+side-by-side bars. Add a gold annotation to appraisal wait: **“External
+capacity—not underwriting—absorbed the surge.”**
 
 ### Sheet 3 — Wait versus touch
 
-Use `vw_stage_cycle_time`. Put `shock_period` on Columns and Measure Values on
-Rows. Retain only `avg_appraisal_wait`, `avg_uw_wait`, `avg_uw_touch`, and
-`avg_condition_days`; put Measure Names on Color. Filter to Pre- and Post-Shock.
-Use grouped bars, with waits in navy/gold and touch time in muted gray.
+Put `[Shock Period]` on Columns and Measure Values on Rows. Retain
+`AVG([Days Appraisal Wait])`, `AVG([Days UW Queue Wait])`,
+`AVG([Days UW Touch])`, and `AVG([Days Condition Clearing])`; place Measure
+Names on Color. Filter to completed, valid-duration loans and Pre-/Post-Shock.
 
-Title: **“Underwriting touch time rose modestly; waiting did not.”**
+Use grouped bars, with waits in navy/gold and touch time in muted gray. Title:
+**“Underwriting touch time rose modestly; waiting did not.”**
 
 ### Sheet 4 — Appraisal-delay map
 
-Use `vw_appraisal_delay_by_county`. Set the geographic role of
-`property_county` to County and `property_state` to State. Use a filled map with
-`AVG(avg_wait)` on Color and `SUM(loans)` on Detail. Filter to `Post-Shock`.
+Set geographic roles: `[Property County]` = County and `[Property State]` =
+State. Use a filled map with `AVG([Days Appraisal Wait])` on Color and
+`COUNTD([Loan ID])` on Detail. Filter to completed, valid-duration loans in
+Post-Shock.
 
 Tooltip:
 
 ```text
-<property_county>, <property_state>
-Average appraisal wait: <AVG(avg_wait)> days
-Panel depth: <AVG(appraiser_panel_depth)> appraisers
-Excess delay vs. baseline: <SUM(excess_over_baseline)> days
-Loans affected: <SUM(loans)>
+<Property County>, <Property State>
+Average appraisal wait: <AVG(Days Appraisal Wait)> days
+Panel depth: <AVG(Appraiser Panel Depth)> appraisers
+Loans affected: <COUNTD(Loan ID)>
 ```
 
 Use a sequential light-to-gold color ramp. Add a dashboard filter action from
-this map to the stage and condition sheets, filtering by State.
+the map to the stage and condition sheets by State.
 
-### Sheet 5 — Condition rework trend
+### Sheet 5 — Condition rework
 
-Use `vw_condition_rework`. Put `condition_category` on Rows and
-`AVG(avg_round)` on Columns. Color by `responsible_party`; filter to
-Post-Shock. Add `AVG(avg_days_to_clear)` to Tooltip.
+Use the relationship between `fact_condition.csv` and `fact_loan.csv`. Put
+`[Condition Category]` on Rows and `AVG([Round Number])` on Columns. Color by
+`[Responsible Party]`; filter the related loan records to Post-Shock. Include
+`AVG([Days to Clear])` and `COUNTD([Loan ID])` in the tooltip.
 
 Title: **“Rework adds borrower-response days after approval.”**
 
-### Sheet 6 — Fallout dollars callout
+### Sheet 6 — Fallout dollars
 
-Use `vw_funnel_by_month`. Put `app_month` on Columns and `SUM(lost_volume)` on
-Rows; filter `app_month` to the last 24 months. Use a thin gold line, add a
-reference band for the During-Shock period, and display the post-shock total as
-a large red annotation.
+Put `[Application Month]` on Columns and `SUM([Fallout Dollars])` on Rows;
+filter to the last 24 months. Use a thin gold line, add a reference band for
+the During-Shock period, and show the post-shock total as a large red callout.
 
 ### Dashboard assembly
 
-Arrange the elements in this order:
-
-1. Navy header: logo, title **“Where Did the Time Go?”**, and Period Focus
-   parameter control.
+1. Navy header: logo, title **“Where Did the Time Go?”**, and Period Focus.
 2. KPI strip.
-3. Stage decomposition (left, 60%) and wait-versus-touch comparison (right,
-   40%).
-4. Appraisal-delay map (left, 60%) and condition-rework chart (right, 40%).
-5. Fallout-dollar callout and a three-item recommendation box.
-
-Recommendation copy:
-
-1. **Expand appraisal panels** in rural markets with thin vendor coverage.
-2. **Front-load borrower documents** to reduce condition rounds.
-3. **Do not mass-hire underwriters**; the queue is not the primary constraint.
+3. Stage decomposition (60% width) and wait-versus-touch chart (40%).
+4. Appraisal-delay map (60%) and condition-rework chart (40%).
+5. Fallout-dollar callout and these recommendations:
+   - Expand appraisal panels in rural markets with thin vendor coverage.
+   - Front-load borrower documents to reduce condition rounds.
+   - Do not mass-hire underwriters; the queue is not the primary constraint.
 
 ## Dashboards 2 and 3
 
 Build these after Dashboard 1 is screenshot-ready:
 
-- **Post-Closing Operations:** use `vw_post_closing_aging` for trailing-doc
-  aging, suspense reasons, exception rate by branch, funding mix, and investor
-  delivery timeliness.
-- **Servicing & MSR:** use `vw_msr_portfolio_monthly`,
-  `vw_msr_vintage_performance`, and `fact_msr_rate_shock` for portfolio value,
-  roll-forward, CPR sensitivity, vintage performance, and a rate-shock
-  parameter.
+- **Post-Closing Operations:** use `fact_loan.csv` for trailing-document aging,
+  suspense reasons, exception rate by branch, funding mix, and investor-delivery
+  timeliness.
+- **Servicing & MSR:** use `fact_msr_monthly.csv` and
+  `fact_msr_rate_shock.csv` for portfolio value, roll-forward, CPR sensitivity,
+  vintage performance, and a rate-shock parameter.
 
 Keep the same header, logo treatment, filters, and gold action color across all
-three tabs so the portfolio reads as one application.
+three tabs so the portfolio reads as one cohesive application.
