@@ -73,10 +73,31 @@
     .tooltip { position: fixed; z-index: 5; pointer-events: none; opacity: 0; padding: 8px 10px; background: #f9fafb; color: #17202a; border-radius: 7px; box-shadow: 0 6px 22px rgba(0,0,0,.32); font-size: 11px; transition: opacity .12s; }
     .tooltip strong { display: block; margin-bottom: 3px; }
     @media print {
-      body { min-width: 0; background: var(--page); }
-      .page { max-width: none; padding: 16px 20px; }
+      @page { size: landscape; margin: .25in; }
+      body { min-width: 0; background: var(--page); print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .page { max-width: none; min-height: 0; padding: 0; }
       button { display: none; }
-      .card { break-inside: avoid; }
+      .header { min-height: 42px; padding-bottom: 9px; }
+      .brand svg { width: 32px; height: 29px; }
+      .brand-name { font-size: 16px; }
+      .brand-subtitle, .header-meta { font-size: 9px; }
+      .badge { padding: 4px 7px; font-size: 8px; }
+      .lede { margin: 8px 0; }
+      .lede h1 { font-size: 14px; }
+      .lede p { font-size: 9px; }
+      .grid { gap: 10px; }
+      .card { min-height: 276px; border-radius: 8px; padding: 11px 13px 9px; break-inside: avoid; }
+      .card h2 { font-size: 12px; }
+      .subtitle { margin: 2px 0 6px; font-size: 9px; }
+      .legend { min-height: 13px; gap: 9px; margin-bottom: 1px; font-size: 8px; }
+      .swatch { width: 10px; height: 6px; }
+      .chart { height: 163px; }
+      .stat-strip { gap: 5px; margin: 1px 0 5px; }
+      .stat { padding: 5px 6px; border-radius: 5px; }
+      .stat-label { font-size: 7px; }
+      .stat-value { margin-top: 1px; font-size: 12px; }
+      .note { margin-top: 4px; font-size: 7.5px; line-height: 1.25; }
+      .foot { margin-top: 7px; font-size: 7.5px; }
     }
   </style>
 </head>
